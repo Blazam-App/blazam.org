@@ -1,0 +1,30 @@
+﻿@page "/download"
+
+<PageTitle>Download - Blazam</PageTitle>
+<DisplayHeading>Download</DisplayHeading>
+<Heading>MSI Installer (Recommended)</Heading>
+<Paragraph>Installing via the MSI installer is the recommended method as it performs all
+    required pre-installation checks automatically, and configures the application to launch
+    based on the chosen installation type.
+</Paragraph>
+<Paragraph>
+    The MSI installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
+    Program Files.
+</Paragraph>
+<Link To="/files/BLAZAM.msi" Target="Target.Blank">
+<Button Color="Color.Primary">Download MSI</Button>
+</Link>
+
+<Div Padding=Padding.Is4.OnY />
+
+<Heading>Manual Installation</Heading>
+<Paragraph>If you need to install in a way that the MSI does not allow, or you're feeling particularly adventerous, use the manual
+    installation method. This method requires you to manually set up database connections and your web hosting solution.
+</Paragraph>
+<Link To="https://dev.azure.com/branchburg/40e01d64-a275-43b6-b071-e4b7339a9b8c/_apis/build/builds/292/artifacts?artifactName=_BLAZAM&api-version=7.0&%24format=zip" Target="Target.Blank">
+<Button Color="Color.Primary">Download Zip</Button>
+</Link>
+
+@code {
+  
+}

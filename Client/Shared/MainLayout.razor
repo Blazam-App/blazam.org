@@ -1,0 +1,40 @@
+﻿
+@inherits LayoutComponentBase
+
+<PageTitle>BLAZAM</PageTitle>
+<ErrorBoundary>
+
+<Layout Sider>
+            <LayoutSider>
+                <LayoutSiderContent>
+                    <NavMenu />
+                </LayoutSiderContent>
+            </LayoutSider>
+
+            <Layout Background="Background.Light" TextColor="TextColor.Dark">
+
+                
+                <LayoutContent Padding="Padding.Is1.OnMobile.Is2.OnTablet.Is3.OnDesktop.Is4.OnWidescreen.Is5.OnFullHD" Style="height: 100vh;overflow: auto;">
+ 
+                            <CascadingValue Value="this">
+                                @Body
+                            </CascadingValue>
+           
+                </LayoutContent>
+                <LayoutFooter>
+                    <AppFooter />
+                    
+                </LayoutFooter>
+            </Layout>
+
+
+</Layout>
+</ErrorBoundary>
+
+@code {
+   
+  
+    public void Update() => StateHasChanged();
+
+
+}

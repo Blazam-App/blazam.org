@@ -1,0 +1,188 @@
+﻿@{
+
+}
+<Bar Mode="BarMode.VerticalInline"
+     CollapseMode="BarCollapseMode.Small"
+     Breakpoint="Breakpoint.Desktop"
+     NavigationBreakpoint="Breakpoint.Tablet"
+     ThemeContrast="ThemeContrast.Dark">
+    <BarBrand>
+        <BarItem>
+            <BarLink TextColor=TextColor.Light To="/home">
+                <Image Class="app-icon" Source="/logo.png" />
+                <Div Margin=Margin.Is2.OnX TextAlignment="TextAlignment.Center">
+                    Blazam
+                </Div>
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarToggler />
+
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarLink To="/">
+                    <BarIcon IconName="IconName.Dashboard" />
+                    @AppLocalization["Home"]
+                </BarLink>
+            </BarItem>
+            <BarItem>
+                <BarLink To="/download">
+                    <BarIcon IconName="IconName.Download" />
+                    @AppLocalization["Download"]
+                </BarLink>
+            </BarItem>
+            
+            <BarItem>
+
+                <BarDropdown>
+                    <BarDropdownToggle>
+
+                        <BarIcon IconName="IconName.FolderPlus" />
+                        @AppLocalization["Install"]
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/install/msi" Match="Match.Prefix">@AppLocalization["MSI"]</BarDropdownItem>
+
+                        <BarDropdownItem To="/install/manual" Match="Match.Prefix">@AppLocalization["Manual"]</BarDropdownItem>
+
+
+
+
+                    </BarDropdownMenu>
+                </BarDropdown>
+
+
+
+
+            </BarItem>
+            @*            <BarItem>
+
+                <BarDropdown>
+                    <BarDropdownToggle>
+
+                        <BarIcon IconName="IconName.User" />
+                        @AppLocalization["Users"]
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/users/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search Users"]</BarDropdownItem>
+
+                        <BarDropdownItem To="/users/create" Match="Match.Prefix"><Icon Name="IconName.UserPlus" />@AppLocalization["Create User"]</BarDropdownItem>
+
+
+
+
+                    </BarDropdownMenu>
+                </BarDropdown>
+
+
+
+
+            </BarItem>
+
+
+
+            <BarItem>
+                <BarDropdown>
+                    <BarDropdownToggle>
+
+                        <BarIcon IconName="@("fa-user-group")" />
+                        @AppLocalization["Groups"]
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/groups/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search Groups"]</BarDropdownItem>
+
+                        <BarDropdownItem To="/groups/create" Match="Match.Prefix"><Icon Name="IconName.PlusCircle" />@AppLocalization["Create Group"]</BarDropdownItem>
+
+
+
+
+                    </BarDropdownMenu>
+                </BarDropdown>
+
+
+
+
+            </BarItem>
+
+
+
+
+
+            <BarItem>
+                <BarDropdown>
+                    <BarDropdownToggle>
+
+                        <BarIcon IconName="@("fa-computer")" />
+                        @AppLocalization["Computers"]
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/computers/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search Computers"]</BarDropdownItem>
+
+                        <BarDropdownItem To="/computers/create" Match="Match.Prefix"><Icon Name="IconName.PlusCircle" />@AppLocalization["Create Computer"]</BarDropdownItem>
+
+
+
+
+                    </BarDropdownMenu>
+                </BarDropdown>
+
+
+
+            </BarItem>
+
+            <BarItem>
+                <BarDropdown>
+                    <BarDropdownToggle>
+
+                        <BarIcon IconName="@("fa-folder")" />
+                        @AppLocalization["OU"]
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/ou/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search OUs"]</BarDropdownItem>
+
+                        <BarDropdownItem To="/ou/create" Match="Match.Prefix"><Icon Name="IconName.FolderPlus" />@AppLocalization["Create OU"]</BarDropdownItem>
+
+
+
+
+                    </BarDropdownMenu>
+                </BarDropdown>
+
+
+
+
+            </BarItem>
+
+            *@
+
+
+
+        </BarStart>
+        <BarEnd>
+
+
+        </BarEnd>
+    </BarMenu>
+</Bar>
+
+@code {
+    private bool collapseNavMenu = true;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+
+
+
+        InvokeAsync(StateHasChanged);
+
+
+    }
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}
