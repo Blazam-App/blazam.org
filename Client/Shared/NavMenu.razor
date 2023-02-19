@@ -21,19 +21,21 @@
     <BarMenu>
         <BarStart>
             <BarItem>
-                <BarLink To="/">
+                <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Index;})>
                     <BarIcon IconName="IconName.Dashboard" />
                     @AppLocalization["Home"]
                 </BarLink>
             </BarItem>
             <BarItem>
-                <BarLink To="/features">
+                <BarLink Clicked=@(()=>{
+                         Layout.CurrentPage=Page.Features;
+                })>
                     <BarIcon IconName="IconName.Wrench" />
                     @AppLocalization["Features"]
                 </BarLink>
             </BarItem>
             <BarItem>
-                <BarLink To="/download">
+                <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Download;})>
                     <BarIcon IconName="IconName.Download" />
                     @AppLocalization["Download"]
                 </BarLink>
@@ -48,9 +50,9 @@
                         @AppLocalization["Install"]
                     </BarDropdownToggle>
                     <BarDropdownMenu>
-                        <BarDropdownItem To="/install/msi" Match="Match.Prefix">@AppLocalization["MSI"]</BarDropdownItem>
+                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.Install;}) Match="Match.Prefix">@AppLocalization["MSI"]</BarDropdownItem>
 
-                        <BarDropdownItem To="/install/manual" Match="Match.Prefix">@AppLocalization["Manual"]</BarDropdownItem>
+                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.Install;}) Match="Match.Prefix">@AppLocalization["Manual"]</BarDropdownItem>
 
 
 
@@ -166,8 +168,9 @@
 
         </BarStart>
         <BarEnd Height="Height.Is100">
-
+            @*
             <BarItem>
+              
                 <BarDropdown Visible=@(ScreenWidth>990)>
                     <BarDropdownToggle>
 
@@ -181,16 +184,20 @@
 
                     </BarDropdownMenu>
                 </BarDropdown>
+                      
 
 
 
-
-            </BarItem>
+            </BarItem>  *@
         </BarEnd>
     </BarMenu>
 </Bar>
 
 @code {
+    public enum Page {Index,Features,Download,Install};
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
     private bool collapseNavMenu = true;
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
     public int ScreenHeight { get; set; }

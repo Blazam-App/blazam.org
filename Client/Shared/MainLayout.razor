@@ -4,6 +4,9 @@
 <ErrorBoundary>
 
 <Layout Sider>
+    
+            <CascadingValue Value="this">
+
             <LayoutSider>
                 <LayoutSiderContent>
                     <NavMenu />
@@ -15,9 +18,26 @@
 
             <LayoutContent Padding="Padding.Is1.OnX.OnMobile.Is2.OnX.OnTablet.Is3.OnX.OnDesktop.Is4.OnX.OnWidescreen.Is5.OnX.OnFullHD" Style="height: 100vh;overflow: auto;">
  
-                            <CascadingValue Value="this">
-                                @Body
-                            </CascadingValue>
+                                
+                                @switch (CurrentPage)
+{
+
+    case Page.Index:
+        <Home />
+
+        break;
+    case Page.Features:
+        <Features />
+
+        break;
+    case Page.Download:
+        <Download />
+        break;
+    case Page.Install:
+
+        break;
+
+}
            
                 </LayoutContent>
                 <LayoutFooter>
@@ -25,16 +45,23 @@
                     
                 </LayoutFooter>
             </Layout>
-
+            </CascadingValue>
 
 </Layout>
 </ErrorBoundary>
 
 @code {
-
-
     public void Update() => StateHasChanged();
+    Page _page;
+    public Page CurrentPage
+    {
+        get => _page; set
+        {
+            if (_page == value) return;
+            _page = value;
+            InvokeAsync(StateHasChanged);
 
-    
+        }
+    }
 
 }
