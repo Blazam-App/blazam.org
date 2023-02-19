@@ -1,0 +1,8 @@
+﻿<Div Padding=Padding.Is4.FromStart ElementId="ToC" ></Div>
+@code {
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        JSRuntime.InvokeVoidAsync("TableOfContents");
+    }
+}

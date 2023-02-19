@@ -3,6 +3,13 @@
 <PageTitle>Download - Blazam</PageTitle>
 <DisplayHeading>Download</DisplayHeading>
 <Heading>MSI Installer (Recommended)</Heading>
+<Alert Visible  Width="Width.Is50" Background="Background.Warning">
+     <AlertDescription>
+
+    The MSI installer is not yet finished. Please check back around March 2023
+    if you want an easy installation.
+    </AlertDescription>
+</Alert>
 <Paragraph>Installing via the MSI installer is the recommended method as it performs all
     required pre-installation checks automatically, and configures the application to launch
     based on the chosen installation type.
@@ -11,9 +18,9 @@
     The MSI installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
     Program Files.
 </Paragraph>
-<Link To="/files/BLAZAM.msi" Target="Target.Blank">
-<Button Color="Color.Primary">Download MSI</Button>
-</Link>
+@*<Link To="/files/BLAZAM.msi" Target="Target.Blank">*@
+<Button Clicked=DownloadMSI Color="Color.Primary">Download MSI</Button>
+@*</Link>*@
 
 <Div Padding=Padding.Is4.OnY />
 
@@ -26,5 +33,20 @@
 </Link>
 
 @code {
-  
+    async Task DownloadMSI()
+    {
+        if(await MessageService.Confirm(
+            "The MSI installer is incomplete. It will install the files for"+
+             " you but it is incapable of configuring IIS currently."+
+             "  Are you sure you want to install this way?"
+            ,"Broken Installer"
+        ,options=>
+        {
+            options.ConfirmButtonText = "Download Anyway";
+            options.CancelButtonText = "I'll wait";
+        }))
+        {
+            Nav.NavigateTo("/files/BLAZAM.msi",true);
+        }    
+    }
 }

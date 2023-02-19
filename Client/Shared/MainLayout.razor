@@ -1,5 +1,4 @@
-﻿
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 
 <PageTitle>BLAZAM</PageTitle>
 <ErrorBoundary>
@@ -13,8 +12,8 @@
 
             <Layout Background="Background.Light" TextColor="TextColor.Dark">
 
-                
-                <LayoutContent Padding="Padding.Is1.OnMobile.Is2.OnTablet.Is3.OnDesktop.Is4.OnWidescreen.Is5.OnFullHD" Style="height: 100vh;overflow: auto;">
+
+            <LayoutContent Padding="Padding.Is1.OnX.OnMobile.Is2.OnX.OnTablet.Is3.OnX.OnDesktop.Is4.OnX.OnWidescreen.Is5.OnX.OnFullHD" Style="height: 100vh;overflow: auto;">
  
                             <CascadingValue Value="this">
                                 @Body
@@ -32,9 +31,10 @@
 </ErrorBoundary>
 
 @code {
-   
-  
+
+
     public void Update() => StateHasChanged();
 
+    
 
 }

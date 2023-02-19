@@ -27,6 +27,12 @@
                 </BarLink>
             </BarItem>
             <BarItem>
+                <BarLink To="/features">
+                    <BarIcon IconName="IconName.Wrench" />
+                    @AppLocalization["Features"]
+                </BarLink>
+            </BarItem>
+            <BarItem>
                 <BarLink To="/download">
                     <BarIcon IconName="IconName.Download" />
                     @AppLocalization["Download"]
@@ -159,9 +165,27 @@
 
 
         </BarStart>
-        <BarEnd>
+        <BarEnd Height="Height.Is100">
+
+            <BarItem>
+                <BarDropdown Visible=@(ScreenWidth>990)>
+                    <BarDropdownToggle>
+
+                        <BarIcon IconName="@("fa-solid fa-table-list")" />
+                        @AppLocalization["TOC"]
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <TOC/>
+
+                       
+
+                    </BarDropdownMenu>
+                </BarDropdown>
 
 
+
+
+            </BarItem>
         </BarEnd>
     </BarMenu>
 </Bar>
@@ -169,17 +193,27 @@
 @code {
     private bool collapseNavMenu = true;
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
+    public int ScreenHeight { get; set; }
+    public int ScreenWidth { get; set; }
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
 
-
+        var dimension = await JSRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
+        ScreenHeight = dimension.Height;
+        ScreenWidth = dimension.Width;
 
         InvokeAsync(StateHasChanged);
 
 
     }
+
+    public class WindowDimension
+    {
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
+
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
