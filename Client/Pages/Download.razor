@@ -1,16 +1,26 @@
 ﻿@page "/download"
+@using Octokit;
 
 <PageTitle>Download - Blazam</PageTitle>
 <DisplayHeading>Download</DisplayHeading>
-<Heading>MSI Installer (Recommended)</Heading>
-<Alert Visible  Width="Width.Is50" Background="Background.Warning">
-     <AlertDescription>
 
-    The MSI installer is not yet finished. Please check back around March 2023
-    if you want an easy installation.
+<Heading>Requirements</Heading>
+<UnorderedList>
+    <UnorderedListItem>Microsoft Windows Server/Desktop</UnorderedListItem>
+    <UnorderedListItem>Active Directory Services</UnorderedListItem>
+    <UnorderedListItem>Currently Requires an MSSQL server (SQLExpress compatible)<br /><Help>More Database Options Coming</Help></UnorderedListItem>
+</UnorderedList>
+
+<Heading>MSI Installer (Recommended)</Heading>
+<Alert Visible Width="Width.Is50" Background="Background.Warning">
+    <AlertDescription>
+
+        The MSI installer is not yet finished. Please check back around March 2023
+        if you want an easy installation.
     </AlertDescription>
 </Alert>
-<Paragraph>Installing via the MSI installer is the recommended method as it performs all
+<Paragraph>
+    Installing via the MSI installer is the recommended method as it performs all
     required pre-installation checks automatically, and configures the application to launch
     based on the chosen installation type.
 </Paragraph>
@@ -25,28 +35,59 @@
 <Div Padding=Padding.Is4.OnY />
 
 <Heading>Manual Installation</Heading>
-<Paragraph>If you need to install in a way that the MSI does not allow, or you're feeling particularly adventerous, use the manual
+<Paragraph>
+    If you need to install in a way that the MSI does not allow, or you're feeling particularly adventerous, use the manual
     installation method. This method requires you to manually set up database connections and your web hosting solution.
 </Paragraph>
-<Link To="https://dev.azure.com/branchburg/40e01d64-a275-43b6-b071-e4b7339a9b8c/_apis/build/builds/292/artifacts?artifactName=_BLAZAM&api-version=7.0&%24format=zip" Target="Target.Blank">
-<Button Color="Color.Primary">Download Zip</Button>
-</Link>
+@if (Error == "")
+{
+    if (latestDownload != null)
+    {
+        <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
+            <Button Color="Color.Primary">Download Zip</Button>
+
+                </Blazorise.Link>
+                <Help>@latestDownload.Version</Help>
+    }
+    else
+    {
+        <Paragraph>Getting latest version...</Paragraph>
+    }
+}
+else
+{
+    <Alert Background="Background.Danger" Visible>
+        <AlertMessage>
+            Error collecting latest version from GitHub.
+        </AlertMessage>
+    </Alert>
+}
 
 @code {
+    ManualDownload latestDownload ;
+    string downloadUri = "";
+    string Error = "";
     async Task DownloadMSI()
     {
-        if(await MessageService.Confirm(
-            "The MSI installer is incomplete. It will install the files for"+
-             " you but it is incapable of configuring IIS currently."+
+        if (await MessageService.Confirm(
+            "The MSI installer is incomplete. It will install the files for" +
+             " you but it is incapable of configuring IIS currently." +
              "  Are you sure you want to install this way?"
-            ,"Broken Installer"
-        ,options=>
+            , "Broken Installer"
+        , options =>
         {
             options.ConfirmButtonText = "Download Anyway";
             options.CancelButtonText = "I'll wait";
         }))
         {
-            Nav.NavigateTo("/files/BLAZAM.msi",true);
-        }    
+            Nav.NavigateTo("/files/BLAZAM.msi", true);
+        }
     }
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        latestDownload = await Update.GetLatestUpdateUri();
+        await InvokeAsync(StateHasChanged);
+    }
+   
 }

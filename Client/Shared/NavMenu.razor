@@ -50,9 +50,9 @@
                         @AppLocalization["Install"]
                     </BarDropdownToggle>
                     <BarDropdownMenu>
-                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.Install;}) Match="Match.Prefix">@AppLocalization["MSI"]</BarDropdownItem>
+                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.MSIInstall;}) >@AppLocalization["MSI"]</BarDropdownItem>
 
-                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.Install;}) Match="Match.Prefix">@AppLocalization["Manual"]</BarDropdownItem>
+                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.ManualInstall;}) >@AppLocalization["Manual"]</BarDropdownItem>
 
 
 
@@ -194,7 +194,7 @@
 </Bar>
 
 @code {
-    public enum Page {Index,Features,Download,Install};
+    public enum Page {Index,Features,Download,ManualInstall,MSIInstall};
     [CascadingParameter]
     public MainLayout Layout { get; set; }
 

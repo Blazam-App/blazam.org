@@ -1,0 +1,58 @@
+﻿
+
+<PageTitle>Manual Installation - Blazam</PageTitle>
+<DisplayHeading>Manual Install</DisplayHeading>
+
+<Heading>Pre-Requisites</Heading>
+<UnorderedList>
+    <UnorderedListItem>Install an SQL Express or MS SQL server, or use an existing one.</UnorderedListItem>
+    <UnorderedListItem>Create an empty database, a new SQL or AD user to connect with, and permissions and logons set.<br/>
+        <Help>Refer to your database documentation for security setup and best practices</Help></UnorderedListItem>
+    <UnorderedListItem>Download and Install .NET Core 6.x Runtime from Micrsoft</UnorderedListItem>
+    <UnorderedListItem>If running under IIS, you will also need the .NET Core 6.x Web Hosting Bundle, also from Microsft.</UnorderedListItem>
+</UnorderedList>
+<Heading>Download</Heading>
+@if (latestDownload != null)
+{
+    <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
+        <Button Color="Color.Primary">Download Zip</Button>
+
+    </Blazorise.Link>
+}
+else
+{
+    <Paragraph>Uh, there is no download available... hmm....</Paragraph>
+}
+<Heading>Install under IIS</Heading>
+<Paragraph>Feel free to deviate from the instructions to fit your desired deployment</Paragraph>
+<OrderedList>
+    <OrderedListItem>Install the Application Initialization Module<br/>
+        <Help>You can find the module under Server Roles -> Web Server -> Application Developer -> Application Initialization.</Help>
+        </OrderedListItem>
+    <OrderedListItem>Create new Application Pool in IIS</OrderedListItem>
+    <OrderedListItem>Set Pool to AlwayRunning<br/>
+        <Help>In IIS Manager, right click on the application pool under which the application runs and select “Advanced Settings”.</Help><br/>
+        <Help>Set start mode to “Always Running”.</Help>
+    </OrderedListItem>
+    <OrderedListItem>Create new Site in IIS for Blazam</OrderedListItem>
+    <OrderedListItem>Set IIS Site to Preload<br/>
+        <Help>In IIS Manager, right click on the site for the application, select “Manage Website” -> “Advanced Settings” and set the “Preload Enabled” value to true.</Help>
+
+    </OrderedListItem>
+    <OrderedListItem>Copy contents of zip file to site directory</OrderedListItem>
+    <OrderedListItem>Copy appsettings.json.example and rename to appsettings.json</OrderedListItem>
+    <OrderedListItem>Replace SQLConnectionString value with the connection string to your database</OrderedListItem>
+
+    
+</OrderedList>
+<Heading>Install as Service</Heading>
+@code {
+    ManualDownload? latestDownload;
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        latestDownload = await Update.GetLatestUpdateUri();
+        await InvokeAsync(StateHasChanged);
+
+    }
+}
