@@ -1,11 +1,12 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager Nav
+@inject IJSRuntime jsRuntime
 <PageTitle>BLAZAM</PageTitle>
 <ErrorBoundary>
 
-<Layout Sider>
-    
-            <CascadingValue Value="this">
+    <Layout Sider>
+
+        <CascadingValue Value="this">
 
             <LayoutSider>
                 <LayoutSiderContent>
@@ -16,41 +17,40 @@
             <Layout Background="Background.Light" TextColor="TextColor.Dark">
 
 
-            <LayoutContent Padding="Padding.Is1.OnX.OnMobile.Is2.OnX.OnTablet.Is3.OnX.OnDesktop.Is4.OnX.OnWidescreen.Is5.OnX.OnFullHD" Style="height: 100vh;overflow: auto;">
- 
-                                
-                                @switch (CurrentPage)
-{
+                <LayoutContent Padding="Padding.Is1.OnX.OnMobile.Is2.OnX.OnTablet.Is3.OnX.OnDesktop.Is4.OnX.OnWidescreen.Is5.OnX.OnFullHD" Style="height: 100vh;overflow: auto;">
 
-    case Page.Index:
-        <Home />
+                    @switch (CurrentPage)
+                    {
 
-        break;
-    case Page.Features:
-        <Features />
+                        case Page.Index:
+                            <Home />
 
-        break;
-    case Page.Demo:
-        <Demo />
-        break;
-    case Page.Download:
-        <Download />
-        break;
-    case Page.ManualInstall:
-        <InstallManual/>
-        break;
+                            break;
+                        case Page.Features:
+                            <Features />
 
-}
-           
+                            break;
+                        case Page.Demo:
+                            <Demo />
+                            break;
+                        case Page.Download:
+                            <Download />
+                            break;
+                        case Page.ManualInstall:
+                            <InstallManual />
+                            break;
+
+                    }
+
                 </LayoutContent>
                 <LayoutFooter>
                     <AppFooter />
-                    
+
                 </LayoutFooter>
             </Layout>
-            </CascadingValue>
+        </CascadingValue>
 
-</Layout>
+    </Layout>
 </ErrorBoundary>
 
 @code {
@@ -65,6 +65,19 @@
             InvokeAsync(StateHasChanged);
 
         }
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (Nav.Uri.Contains("/download"))
+            CurrentPage = Page.Download;
+        else if (Nav.Uri.Contains("/features"))
+            CurrentPage = Page.Features;
+
+        else if (Nav.Uri.Contains("/demo"))
+            CurrentPage = Page.Demo;
+        jsRuntime.InvokeVoidAsync("ChangeUrl", "/");
+
     }
 
 }

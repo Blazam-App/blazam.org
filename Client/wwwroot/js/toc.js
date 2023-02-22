@@ -40,3 +40,7 @@ window.getWindowDimensions = function () {
         height: window.innerHeight
     };
 }; 
+
+window.ChangeUrl = function (url) {
+    history.pushState(null, '', url);
+}
