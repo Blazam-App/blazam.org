@@ -27,6 +27,16 @@ a, .btn-link {
     padding-top: 1.1rem;
 }
 
+.carousel-control-prev-icon {
+    background-color: #00000099;
+    border-radius: 25%;
+}
+
+.carousel-control-next-icon {
+    background-color: #00000099;
+    border-radius: 25%;
+}
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }

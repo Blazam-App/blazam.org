@@ -35,6 +35,12 @@
                 </BarLink>
             </BarItem>
             <BarItem>
+                <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Demo;})>
+                    <BarIcon IconName="IconName.Gamepad" />
+                    @AppLocalization["Demo"]
+                </BarLink>
+            </BarItem>
+            <BarItem>
                 <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Download;})>
                     <BarIcon IconName="IconName.Download" />
                     @AppLocalization["Download"]
@@ -194,7 +200,7 @@
 </Bar>
 
 @code {
-    public enum Page {Index,Features,Download,ManualInstall,MSIInstall};
+    public enum Page {Index,Features,Demo,Download,ManualInstall,MSIInstall};
     [CascadingParameter]
     public MainLayout Layout { get; set; }
 

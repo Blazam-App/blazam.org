@@ -3,6 +3,7 @@
 
 <PageTitle>Download - Blazam</PageTitle>
 <DisplayHeading>Download</DisplayHeading>
+<Badges />
 
 <Heading>Requirements</Heading>
 <UnorderedList>
@@ -12,7 +13,7 @@
 </UnorderedList>
 
 <Heading>MSI Installer (Recommended)</Heading>
-<Alert Visible Width="Width.Is50" Background="Background.Warning">
+<Alert Visible Style="max-width:300px" Background="Background.Warning">
     <AlertDescription>
 
         The MSI installer is not yet finished. Please check back around March 2023
@@ -46,8 +47,11 @@
         <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
             <Button Color="Color.Primary">Download Zip</Button>
 
-                </Blazorise.Link>
-                <Help>@latestDownload.Version</Help>
+        </Blazorise.Link>
+        <br/>
+        <Help>Version: @latestDownload.Version</Help>
+        <br/>
+        <Button Clicked=@(()=>{Layout.CurrentPage=Shared.NavMenu.Page.ManualInstall;}) Color=Color.Primary>Install Instructions</Button>
     }
     else
     {
@@ -64,7 +68,9 @@ else
 }
 
 @code {
-    ManualDownload latestDownload ;
+    [CascadingParameter]
+    public MainLayout Layout{ get; set; }
+    ManualDownload latestDownload;
     string downloadUri = "";
     string Error = "";
     async Task DownloadMSI()
@@ -89,5 +95,5 @@ else
         latestDownload = await Update.GetLatestUpdateUri();
         await InvokeAsync(StateHasChanged);
     }
-   
+
 }
