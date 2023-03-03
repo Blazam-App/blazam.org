@@ -50,151 +50,35 @@
             <BarItem>
 
                 <BarDropdown>
-                    <BarDropdownToggle>
+                    <BarLink To="https://docs.blazam.org" Target="Target.Blank">
 
-                        <BarIcon IconName="IconName.FolderPlus" />
-                        @AppLocalization["Install"]
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.MSIInstall;}) >@AppLocalization["MSI"]</BarDropdownItem>
-
-                        <BarDropdownItem Clicked=@(()=>{Layout.CurrentPage=Page.ManualInstall;}) >@AppLocalization["Manual"]</BarDropdownItem>
-
-
-
-
-                    </BarDropdownMenu>
+                        <BarIcon IconName="IconName.Book" />
+                        @AppLocalization["Documentation"]
+                    </BarLink>
+                   
                 </BarDropdown>
 
 
 
 
             </BarItem>
-            @*            <BarItem>
-
-                <BarDropdown>
-                    <BarDropdownToggle>
-
-                        <BarIcon IconName="IconName.User" />
-                        @AppLocalization["Users"]
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem To="/users/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search Users"]</BarDropdownItem>
-
-                        <BarDropdownItem To="/users/create" Match="Match.Prefix"><Icon Name="IconName.UserPlus" />@AppLocalization["Create User"]</BarDropdownItem>
-
-
-
-
-                    </BarDropdownMenu>
-                </BarDropdown>
-
-
-
-
-            </BarItem>
-
-
-
-            <BarItem>
-                <BarDropdown>
-                    <BarDropdownToggle>
-
-                        <BarIcon IconName="@("fa-user-group")" />
-                        @AppLocalization["Groups"]
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem To="/groups/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search Groups"]</BarDropdownItem>
-
-                        <BarDropdownItem To="/groups/create" Match="Match.Prefix"><Icon Name="IconName.PlusCircle" />@AppLocalization["Create Group"]</BarDropdownItem>
-
-
-
-
-                    </BarDropdownMenu>
-                </BarDropdown>
-
-
-
-
-            </BarItem>
-
-
-
-
-
-            <BarItem>
-                <BarDropdown>
-                    <BarDropdownToggle>
-
-                        <BarIcon IconName="@("fa-computer")" />
-                        @AppLocalization["Computers"]
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem To="/computers/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search Computers"]</BarDropdownItem>
-
-                        <BarDropdownItem To="/computers/create" Match="Match.Prefix"><Icon Name="IconName.PlusCircle" />@AppLocalization["Create Computer"]</BarDropdownItem>
-
-
-
-
-                    </BarDropdownMenu>
-                </BarDropdown>
-
-
-
-            </BarItem>
-
-            <BarItem>
-                <BarDropdown>
-                    <BarDropdownToggle>
-
-                        <BarIcon IconName="@("fa-folder")" />
-                        @AppLocalization["OU"]
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem To="/ou/search" Match="Match.Prefix"><Icon Name="IconName.Search" />@AppLocalization["Search OUs"]</BarDropdownItem>
-
-                        <BarDropdownItem To="/ou/create" Match="Match.Prefix"><Icon Name="IconName.FolderPlus" />@AppLocalization["Create OU"]</BarDropdownItem>
-
-
-
-
-                    </BarDropdownMenu>
-                </BarDropdown>
-
-
-
-
-            </BarItem>
-
-            *@
-
+         
 
 
         </BarStart>
-        <BarEnd Height="Height.Is100">
-            @*
+        <BarEnd>
+            
             <BarItem>
-              
-                <BarDropdown Visible=@(ScreenWidth>990)>
-                    <BarDropdownToggle>
+                <BarLink Target="Target.Blank" To="https://github.com/Blazam-App/BLAZAM">
+                    <BarIcon IconName=@("fa-brands fa-github") /> Blazam
+                </BarLink>
+            </BarItem>  
 
-                        <BarIcon IconName="@("fa-solid fa-table-list")" />
-                        @AppLocalization["TOC"]
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <TOC/>
-
-                       
-
-                    </BarDropdownMenu>
-                </BarDropdown>
-                      
-
-
-
-            </BarItem>  *@
+            <BarItem>
+                <BarLink Target="Target.Blank" To="https://github.com/Blazam-App/blazam.org">
+                    <BarIcon IconName=@("fa-solid fa-code") /> This site
+                </BarLink>
+            </BarItem>  
         </BarEnd>
     </BarMenu>
 </Bar>

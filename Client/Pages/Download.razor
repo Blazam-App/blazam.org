@@ -11,75 +11,82 @@
     <UnorderedListItem>Active Directory Services</UnorderedListItem>
     <UnorderedListItem>Currently Requires an MSSQL server (SQLExpress compatible)<br /><Help>More Database Options Coming</Help></UnorderedListItem>
 </UnorderedList>
+<Div TextColor="TextColor.Muted">
+    <Heading>MSI Installer (Recommended)</Heading>
+    <Alert Visible Style="max-width:300px" Background="Background.Warning">
+        <AlertDescription>
 
-<Heading>MSI Installer (Recommended)</Heading>
-<Alert Visible Style="max-width:300px" Background="Background.Warning">
-    <AlertDescription>
+            The MSI installer is not yet finished. Please check back around March 2023
+            if you want an easy installation.
+        </AlertDescription>
+    </Alert>
+    <Paragraph>
+        Installing via the MSI installer is the recommended method as it performs all
+        required pre-installation checks automatically, and configures the application to launch
+        based on the chosen installation type.
+    </Paragraph>
+    <Paragraph>
+        The MSI installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
+        Program Files.
+    </Paragraph>
+    <Button Clicked=DownloadMSI Color="Color.Primary">Download MSI</Button>
 
-        The MSI installer is not yet finished. Please check back around March 2023
-        if you want an easy installation.
-    </AlertDescription>
-</Alert>
-<Paragraph>
-    Installing via the MSI installer is the recommended method as it performs all
-    required pre-installation checks automatically, and configures the application to launch
-    based on the chosen installation type.
-</Paragraph>
-<Paragraph>
-    The MSI installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
-    Program Files.
-</Paragraph>
-@*<Link To="/files/BLAZAM.msi" Target="Target.Blank">*@
-<Button Clicked=DownloadMSI Color="Color.Primary">Download MSI</Button>
-@*</Link>*@
+    </Div>
 
-<Div Padding=Padding.Is4.OnY />
 
-<Heading>Manual Installation</Heading>
-<Paragraph>
-    If you need to install in a way that the MSI does not allow, or you're feeling particularly adventerous, use the manual
-    installation method. This method requires you to manually set up database connections and your web hosting solution.
-</Paragraph>
-@if (Error == "")
-{
-    if (latestDownload != null)
+
+    <Div Margin="Margin.Is5.FromTop">
+    <Heading>Manual Installation</Heading>
+    <Paragraph>
+        If you need to install in a way that the MSI does not allow, or you're feeling particularly adventerous, use the manual
+        installation method. This method requires you to manually set up database connections and your web hosting solution.
+    </Paragraph>
+    @if (Error == "")
     {
-        <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
-            <Button Color="Color.Primary">Download Zip</Button>
+        if (latestDownload != null)
+        {
+            <Help>Version: @latestDownload.Version</Help>
+            <br />
 
-        </Blazorise.Link>
-        <br/>
-        <Help>Version: @latestDownload.Version</Help>
-        <br/>
-        <Button Clicked=@(()=>{Layout.CurrentPage=Shared.NavMenu.Page.ManualInstall;}) Color=Color.Primary>Install Instructions</Button>
+            <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
+                <Button Color="Color.Primary">Download Zip</Button>
+
+            </Blazorise.Link>
+            <br />
+            <br />
+            <br />
+            <Blazorise.Link To="https://docs.blazam.org/install/manual/" Target=Target.Blank>
+                <Button Color=Color.Primary>Install Instructions</Button>
+            </Blazorise.Link>
+        }
+        else
+        {
+            <Paragraph>Getting latest version...</Paragraph>
+        }
     }
     else
     {
-        <Paragraph>Getting latest version...</Paragraph>
-    }
-}
-else
-{
-    <Alert Background="Background.Danger" Visible>
+        <Alert Background="Background.Danger" Visible>
         <AlertMessage>
             Error collecting latest version from GitHub.
         </AlertMessage>
     </Alert>
-}
+    }
+</Div>
 
 @code {
     [CascadingParameter]
-    public MainLayout Layout{ get; set; }
+    public MainLayout Layout { get; set; }
     ManualDownload latestDownload;
     string downloadUri = "";
     string Error = "";
     async Task DownloadMSI()
     {
         if (await MessageService.Confirm(
-            "The MSI installer is incomplete. It will install the files for" +
-             " you but it is incapable of configuring IIS currently." +
-             "  Are you sure you want to install this way?"
-            , "Broken Installer"
+        "The MSI installer is incomplete. It will install the files for" +
+        " you but it is incapable of configuring IIS currently." +
+        "  Are you sure you want to install this way?"
+        , "Broken Installer"
         , options =>
         {
             options.ConfirmButtonText = "Download Anyway";
@@ -95,5 +102,4 @@ else
         latestDownload = await Update.GetLatestUpdateUri();
         await InvokeAsync(StateHasChanged);
     }
-
 }
