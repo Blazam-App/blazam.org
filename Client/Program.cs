@@ -41,5 +41,5 @@ builder.Services.AddBlazorise(options =>
     .AddFontAwesomeIcons()
     .AddLogging();
 
-
-await builder.Build().RunAsync();
+var app = builder.Build();
+await app.RunAsync();
