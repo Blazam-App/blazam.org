@@ -1,12 +1,10 @@
 using blazam.org;
-using Blazorise;
-using Blazorise.Bootstrap5;
-using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using MudBlazor.Services;
 using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -32,14 +30,12 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 //Add Blazorize UI framework
 
-builder.Services.AddBlazorise(options =>
+builder.Services.AddMudServices(options =>
 {
-    options.Immediate = true;
+    options.SnackbarConfiguration.HideTransitionDuration = 25;
+    options.SnackbarConfiguration.ShowTransitionDuration = 25;
 
-})
-    .AddBootstrap5Providers()
-    .AddFontAwesomeIcons()
-    .AddLogging();
+});
 
 var app = builder.Build();
 await app.RunAsync();

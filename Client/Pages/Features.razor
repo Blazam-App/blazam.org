@@ -1,44 +1,106 @@
 ﻿@page "/features"
 <PageTitle>Features - Blazam</PageTitle>
 
-<DisplayHeading>Features</DisplayHeading>
+<MudText Typo=Typo.h1>Features</MudText>
 
-<Carousel Style="max-width:800px;" Margin="Margin.IsAuto" Padding="Padding.Is5.OnX" @bind-SelectedSlide="@selectedSlide" Interval="TimeSpan.FromSeconds(10).TotalMilliseconds">
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="1">
-        <Image Source="img/screens/user-autocomplete.png" Text="Search Autocompletion" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>Search Auto-Completion</Paragraph>
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="2">
-        <Image Source="img/screens/user-result.png" Text="User Management" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>User,Group,Computer, and OU Management</Paragraph>
+<MudCarousel Class="mud-width-full" Style="height:400px;" TData=object>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
+            <MudImage Src="img/screens/user-autocomplete.png" Alt="Search Autocompletion" />
+            <MudText TextWeight=TextWeight.Bold>Search Auto-Completion</MudText>
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
 
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="3">
-        <Image Source="img/screens/assign-to.png" Text="Copy Group Assignments" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>Copy group assignments from one user/group to another user/group/computer</Paragraph>
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="4">
-        <Image Source="img/screens/create-user-step2.png" Text="Templated User Creation" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>Admin templated and application guided user creation simplifies the process</Paragraph>
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="5">
-        <Image Source="img/screens/create-user-step3.png" Text="Prefill fields or let users enter data" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>Prefill and select data entry fields in Active Directory for your templates</Paragraph>
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="6">
-        <Image Source="img/screens/create-user-confirm.png" Text="User Creation Confirmation" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>All actions in the application ask for user confirmation</Paragraph>
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="7">
-        <Image Source="img/screens/computer-result.png" Text="Computer Drives and User Sessions" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>Get advanced deep Computer inspection and management, such as inpecting drive usage, manage user sessions, kill a process, reboot a machine, and more...</Paragraph>
-    </CarouselSlide>
-    <CarouselSlide TextAlignment="TextAlignment.Center" Name="8">
-        <Image Source="img/screens/recycle-bin.png" Text="Easy AD Recycle Bin Access" Display="Display.Block" Width="Width.Is100" />
-        <Paragraph TextWeight=TextWeight.Bold>Acceess the Active Directory Recycle Bin, right from your phone</Paragraph>
-    </CarouselSlide>
-</Carousel>
+            <MudImage Src="img/screens/user-result.png" Alt="User Management" />
+            <MudText TextWeight=TextWeight.Bold>User,Group,Computer, and OU Management</MudText>
+        </div>
+
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
+
+            <MudImage Src="img/screens/assign-to.png" Alt="Copy Group Assignments" />
+            <MudText TextWeight=TextWeight.Bold>Copy group assignments from one user/group to another user/group/computer</MudText>
+        </div>
+
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
+
+            <MudImage Src="img/screens/create-user-step2.png" Alt="Templated User Creation" />
+            <MudText TextWeight=TextWeight.Bold>Admin templated and application guided user creation simplifies the process</MudText>
+        </div>
+
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
+
+            <MudImage Src="img/screens/create-user-step3.png" Alt="Prefill fields or let users enter data" />
+            <MudText TextWeight=TextWeight.Bold>Prefill and select data entry fields in Active Directory for your templates</MudText>
+        </div>
+
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
+
+            <MudImage Src="img/screens/create-user-confirm.png" Alt="User Creation Confirmation" />
+            <MudText TextWeight=TextWeight.Bold>All actions in the application ask for user confirmation</MudText>
+        </div>
+
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100%">
+
+            <MudImage Src="img/screens/computer-result.png" Alt="Computer Drives and User Sessions" />
+            <MudText TextWeight=TextWeight.Bold>Get advanced deep Computer inspection and management, such as inpecting drive usage, manage user sessions, kill a process, reboot a machine, and more...</MudText>
+        </div>
+
+    </MudCarouselItem>
+    <MudCarouselItem>
+        <div class="d-flex" style="height:100vh">
+
+            <MudImage Src="img/screens/recycle-bin.png" Alt="Easy AD Recycle Bin Access" />
+            <MudText TextWeight=TextWeight.Bold>Acceess the Active Directory Recycle Bin, right from your phone</MudText>
+        </div>
+
+    </MudCarouselItem>
+</MudCarousel>
+<MudGrid>
+    <MudItem  xs="12" sm="3">
+        Quickly search and edit users
+    </MudItem>
+    <MudItem xs="12" sm="9">
+
+        <VideoTile Src="/vid/search-and-edit.webm" />
+    </MudItem>
+
+
+
+
+
+    <MudItem xs="12" sm="3">
+        Move users, groups, and organizatinal units
+    </MudItem>
+    <MudItem xs="12" sm="9">
+
+        <VideoTile Src="/vid/move-user.webm" />
+    </MudItem>
+
+
+
+
+
+
+    <MudItem xs="12" sm="3">
+        Copy group assignments from other users and groups
+    </MudItem>
+    <MudItem xs="12" sm="9">
+
+        <VideoTile Src="/vid/copy-group-assignements.webm" />
+    </MudItem>
+</MudGrid>
 
 @code {
-    string selectedSlide = "1";
 }

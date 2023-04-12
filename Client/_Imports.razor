@@ -8,12 +8,10 @@
 @using Microsoft.JSInterop
 @using blazam.org
 @using blazam.org.Shared
+@using blazam.org.Shared.UI
 
 
-@using Blazorise
-@using Blazorise.Extensions
-@using Blazorise.Components
-@using Blazorise.Snackbar
+@using MudBlazor
 @using Microsoft.Extensions.Localization;
 @using blazam.org.Shared.ResourceFiles;
 @using static blazam.org.Shared.NavMenu;
@@ -24,4 +22,4 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager Nav
 
-@inject IMessageService MessageService
+@inject IDialogService DialogService

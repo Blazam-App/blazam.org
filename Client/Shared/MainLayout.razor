@@ -3,79 +3,106 @@
 @inject IJSRuntime jsRuntime
 <PageTitle>BLAZAM</PageTitle>
 <ErrorBoundary>
+    <CascadingValue Value="this">
 
-    <Layout Sider>
+    <MudLayout Style="min-height:98vh;">
+            <MainAppBar />
 
-        <CascadingValue Value="this">
+        <MudDrawer Width="185px" @bind-Open=@DrawerOpen Elevation="3" Class="mud-theme-dark">
+                <NavMenu />
 
-            <LayoutSider>
-                <LayoutSiderContent>
-                    <NavMenu />
-                </LayoutSiderContent>
-            </LayoutSider>
-
-            <Layout Background="Background.Light" TextColor="TextColor.Dark">
+        </MudDrawer>
 
 
-                <LayoutContent Padding="Padding.Is1.OnX.OnMobile.Is2.OnX.OnTablet.Is3.OnX.OnDesktop.Is4.OnX.OnWidescreen.Is5.OnX.OnFullHD" Style="height: 100vh;overflow: auto;">
 
-                    @switch (CurrentPage)
-                    {
+        <MudMainContent Class="mud-height-full">
 
-                        case Page.Index:
-                            <Home />
 
-                            break;
-                        case Page.Features:
-                            <Features />
 
-                            break;
-                        case Page.Demo:
-                            <Demo />
-                            break;
-                        case Page.Download:
-                            <Download />
-                            break;
-                        case Page.ManualInstall:
-                            <InstallManual />
-                            break;
 
-                    }
 
-                </LayoutContent>
-                <LayoutFooter>
-                    <AppFooter />
+            <MudContainer MaxWidth="MaxWidth.Large" Class="pt-5 mud-height-full">
 
-                </LayoutFooter>
-            </Layout>
-        </CascadingValue>
 
-    </Layout>
+                @switch (CurrentPage)
+                {
+
+                    case AppPage.Index:
+                        <Home />
+
+                        break;
+                    case AppPage.Features:
+                        <Features />
+
+                        break;
+                    case AppPage.Demo:
+                        <Demo />
+                        break;
+                    case AppPage.Download:
+                        <Download />
+                        break;
+                    case AppPage.ManualInstall:
+                        <InstallManual />
+                        break;
+
+                }
+
+                @*<AppUserPageTracker />*@
+
+            </MudContainer>
+            <MudElement>
+
+                <AppFooter />
+
+            </MudElement>
+        </MudMainContent>
+
+        @*<NotificationBroadcastListener />*@
+
+
+
+    </MudLayout>
+
+    </CascadingValue>
+
+ 
 </ErrorBoundary>
 
 @code {
+    bool drawerOpen = true;
+    public bool DrawerOpen
+    {
+        get => drawerOpen; set
+        {
+            drawerOpen = value;
+            InvokeAsync(StateHasChanged);
+        }
+    }
     public void Update() => StateHasChanged();
-    Page _page;
-    public Page CurrentPage
+    AppPage _page;
+    public AppPage CurrentPage
     {
         get => _page; set
         {
             if (_page == value) return;
             _page = value;
+
             InvokeAsync(StateHasChanged);
 
         }
     }
+
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         if (Nav.Uri.Contains("/download"))
-            CurrentPage = Page.Download;
+            CurrentPage = AppPage.Download;
         else if (Nav.Uri.Contains("/features"))
-            CurrentPage = Page.Features;
+            CurrentPage = AppPage.Features;
 
         else if (Nav.Uri.Contains("/demo"))
-            CurrentPage = Page.Demo;
+            CurrentPage = AppPage.Demo;
         jsRuntime.InvokeVoidAsync("ChangeUrl", "/");
 
     }
