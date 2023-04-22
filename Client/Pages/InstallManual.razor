@@ -1,30 +1,30 @@
 ﻿
 
 <PageTitle>Manual Installation - Blazam</PageTitle>
-<DisplayHeading>Manual Install</DisplayHeading>
+<MudText Typo=Typo.h1>Manual Install</MudText>
 
-<Heading>Pre-Requisites</Heading>
-<UnorderedList>
-    <UnorderedListItem>Install an SQL Express or MS SQL server, or use an existing one.</UnorderedListItem>
-    <UnorderedListItem>Create an empty database, a new SQL or AD user to connect with, and permissions and logons set.<br/>
-        <Help>Refer to your database documentation for security setup and best practices</Help></UnorderedListItem>
-    <UnorderedListItem>Download and Install .NET Core 6.x Runtime from Micrsoft</UnorderedListItem>
-    <UnorderedListItem>If running under IIS, you will also need the .NET Core 6.x Web Hosting Bundle, also from Microsft.</UnorderedListItem>
-</UnorderedList>
-<Heading>Download</Heading>
+<MudText Typo=Typo.h4>Pre-Requisites</MudText>
+<ul>
+    <li>Install an SQL Express or MS SQL server, or use an existing one.</li>
+    <li>Create an empty database, a new SQL or AD user to connect with, and permissions and logons set.<br/>
+        <Help>Refer to your database documentation for security setup and best practices</Help></li>
+    <li>Download and Install .NET Core 6.x Runtime from Micrsoft</li>
+    <li>If running under IIS, you will also need the .NET Core 6.x Web Hosting Bundle, also from Microsft.</li>
+</ul>
+<MudText Typo=Typo.h4>Download</MudText>
 @if (latestDownload != null)
 {
-    <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
-        <Button Color="Color.Primary">Download Zip</Button>
+    <MudLink Href="@latestDownload.DownloadUri" Target="Target.Blank">
+        <MudButton Color="Color.Primary">Download Zip</MudButton>
 
-    </Blazorise.Link>
+    </MudLink>
 }
 else
 {
-    <Paragraph>Uh, there is no download available... hmm....</Paragraph>
+    <MudText>Uh, there is no download available... hmm....</MudText>
 }
-<Heading>Install under IIS</Heading>
-<Paragraph>Feel free to deviate from the instructions to fit your desired deployment</Paragraph>
+<MudText Typo=Typo.h4>Install under IIS</MudText>
+<MudText>Feel free to deviate from the instructions to fit your desired deployment</MudText>
 <OrderedList>
     <OrderedListItem>Install the Application Initialization Module<br/>
         <Help>You can find the module under Server Roles -> Web Server -> Application Developer -> Application Initialization.</Help>
@@ -45,7 +45,7 @@ else
 
     
 </OrderedList>
-<Heading>Install as Service</Heading>
+<MudText Typo=Typo.h4>Install as Service</MudText>
 @code {
     ManualDownload? latestDownload;
     protected override async Task OnInitializedAsync()

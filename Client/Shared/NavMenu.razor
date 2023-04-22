@@ -1,90 +1,73 @@
 ﻿@{
 
 }
-<Bar Mode="BarMode.VerticalInline"
-     CollapseMode="BarCollapseMode.Small"
-     Breakpoint="Breakpoint.Desktop"
-     NavigationBreakpoint="Breakpoint.Tablet"
-     ThemeContrast="ThemeContrast.Dark">
-    <BarBrand>
-        <BarItem>
-            <BarLink TextColor=TextColor.Light To="/home">
-                <Image Class="app-icon" Source="/logo.png" />
-                <Div Margin=Margin.Is2.OnX TextAlignment="TextAlignment.Center">
-                    Blazam
-                </Div>
-            </BarLink>
-        </BarItem>
-    </BarBrand>
-    <BarToggler />
+<MudPaper Width="180px" Style="height:100%" Elevation="0" Class="py-3 mud-theme-dark">
+   
 
-    <BarMenu>
-        <BarStart>
-            <BarItem>
-                <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Index;})>
-                    <BarIcon IconName="IconName.Dashboard" />
-                    @AppLocalization["Home"]
-                </BarLink>
-            </BarItem>
-            <BarItem>
-                <BarLink Clicked=@(()=>{
-                         Layout.CurrentPage=Page.Features;
-                })>
-                    <BarIcon IconName="IconName.Wrench" />
-                    @AppLocalization["Features"]
-                </BarLink>
-            </BarItem>
-            <BarItem>
-                <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Demo;})>
-                    <BarIcon IconName="IconName.Gamepad" />
-                    @AppLocalization["Demo"]
-                </BarLink>
-            </BarItem>
-            <BarItem>
-                <BarLink Clicked=@(()=>{Layout.CurrentPage=Page.Download;})>
-                    <BarIcon IconName="IconName.Download" />
-                    @AppLocalization["Download"]
-                </BarLink>
-            </BarItem>
-            
-            <BarItem>
 
-                <BarDropdown>
-                    <BarLink To="https://docs.blazam.org" Target="Target.Blank">
+    <MudNavMenu Style="height:100%">
 
-                        <BarIcon IconName="IconName.Book" />
-                        @AppLocalization["Documentation"]
-                    </BarLink>
-                   
-                </BarDropdown>
+        <MudStack Style="height:100%">
+            <MudStack Row=true>
+                <MudImage Class="app-icon" Src="/logo.png" />
+
+                <MudText Align="Align.Center" Class="align-middle">Blazam</MudText>
+
+            </MudStack>
+            <MudNavLink Icon="@Icons.Material.Filled.Dashboard"
+                        OnClick=@(()=>{Layout.CurrentPage=AppPage.Index;})>
+                @AppLocalization["Home"]
+            </MudNavLink>
+
+            <MudNavLink Icon=@Icons.Material.Filled.List
+                        OnClick=@(()=>{
+                        Layout.CurrentPage=AppPage.Features;
+                        })>
+                @AppLocalization["Features"]
+            </MudNavLink>
+
+            <MudNavLink Icon=@Icons.Material.Filled.Gamepad
+                        OnClick=@(()=>{Layout.CurrentPage=AppPage.Demo;})>
+                @AppLocalization["Demo"]
+            </MudNavLink>
+
+            <MudNavLink Icon=@Icons.Material.Filled.Download
+                        OnClick=@(()=>{Layout.CurrentPage=AppPage.Download;})>
+
+                @AppLocalization["Download"]
+            </MudNavLink>
+
+
+            <MudNavLink Icon=@Icons.Material.Filled.Book
+                        Href="https://docs.blazam.org"
+                        Target="Target.Blank">
+
+                @AppLocalization["Documentation"]
+            </MudNavLink>
 
 
 
 
-            </BarItem>
-         
 
 
-        </BarStart>
-        <BarEnd>
-            
-            <BarItem>
-                <BarLink Target="Target.Blank" To="https://github.com/Blazam-App/BLAZAM">
-                    <BarIcon IconName=@("fa-brands fa-github") /> Blazam
-                </BarLink>
-            </BarItem>  
 
-            <BarItem>
-                <BarLink Target="Target.Blank" To="https://github.com/Blazam-App/blazam.org">
-                    <BarIcon IconName=@("fa-solid fa-code") /> This site
-                </BarLink>
-            </BarItem>  
-        </BarEnd>
-    </BarMenu>
-</Bar>
 
+
+            <MudSpacer />
+
+            <MudNavLink Icon=@Icons.Custom.Brands.GitHub Target="Target.Blank" Href="https://github.com/Blazam-App/BLAZAM">
+                GitHub
+            </MudNavLink>
+
+            <MudNavLink Icon=@Icons.Material.Filled.Code Target="Target.Blank" Href="https://github.com/Blazam-App/blazam.org">
+                Blazam.org Source Code
+            </MudNavLink>
+
+        </MudStack>
+    </MudNavMenu>
+</MudPaper>
 @code {
-    public enum Page {Index,Features,Demo,Download,ManualInstall,MSIInstall};
+    public enum AppPage { Index, Features, Demo, Download, ManualInstall, MSIInstall };
     [CascadingParameter]
     public MainLayout Layout { get; set; }
 
@@ -116,4 +99,4 @@
         collapseNavMenu = !collapseNavMenu;
     }
 
-}
+    }
