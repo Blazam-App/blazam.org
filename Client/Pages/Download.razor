@@ -11,7 +11,14 @@
     <UnorderedListItem>Active Directory Services</UnorderedListItem>
     <UnorderedListItem>Database from the options below...</UnorderedListItem>
 </MudContainer>
-
+<MudText Class="mt-5" Typo=Typo.h4>Database Options</MudText>
+<MudContainer Class="ps-4">
+    <UnorderedListItem>Local File SQLite Database (No setup required)</UnorderedListItem>
+    <UnorderedListItem>MSSQL</UnorderedListItem>
+    <UnorderedListItem>SQLExpress</UnorderedListItem>
+    <UnorderedListItem>MySql</UnorderedListItem>
+    <UnorderedListItem>MariaDB</UnorderedListItem>
+</MudContainer>
 
 
     <MudText Class="mt-5" Typo=Typo.h4>Web Installer (Recommended)</MudText>
@@ -29,7 +36,7 @@
         The Web installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
         Program Files.
     </MudText>
-    <MudButton Clicked=DownloadWeb Color="Color.Primary">Download Web</MudButton>
+    <MudButton OnClick=DownloadWeb Color="Color.Primary">Download Web</MudButton>
 
 
 
