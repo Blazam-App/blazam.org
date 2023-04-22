@@ -14,10 +14,10 @@
 <MudText Typo=Typo.h4>Download</MudText>
 @if (latestDownload != null)
 {
-    <Blazorise.Link To="@latestDownload.DownloadUri" Target="Target.Blank">
+    <MudLink Href="@latestDownload.DownloadUri" Target="Target.Blank">
         <MudButton Color="Color.Primary">Download Zip</MudButton>
 
-    </Blazorise.Link>
+    </MudLink>
 }
 else
 {
