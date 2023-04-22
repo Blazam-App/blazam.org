@@ -9,65 +9,76 @@
 <MudContainer Class="ps-4">
     <UnorderedListItem>Microsoft Windows Server/Desktop</UnorderedListItem>
     <UnorderedListItem>Active Directory Services</UnorderedListItem>
-    <UnorderedListItem>Currently Requires an MSSQL server (SQLExpress compatible)<br /><Help>More Database Options Coming</Help></UnorderedListItem>
+    <UnorderedListItem>Database from the options below...</UnorderedListItem>
 </MudContainer>
 
 
 
-    <MudText Class="mt-5" Typo=Typo.h4>MSI Installer (Recommended)</MudText>
-    <MudAlert  Style="max-width:300px" Class="mud-alert-filled-warning">
+<MudText Class="mt-5" Typo=Typo.h4>Database Options</MudText>
+<MudContainer Class="ps-4">
+    <UnorderedListItem>Sqlite file</UnorderedListItem>
+    <UnorderedListItem>MSSQL</UnorderedListItem>
+    <UnorderedListItem>SQLExpress</UnorderedListItem>
+    <UnorderedListItem>MySQL</UnorderedListItem>
+    <UnorderedListItem>MariaDB</UnorderedListItem>
+</MudContainer>
 
-            The MSI installer is not yet finished. Please check back around March 2023
-            if you want an easy installation.
-    </MudAlert>
-    <MudText>
-        Installing via the MSI installer is the recommended method as it performs all
-        required pre-installation checks automatically, and configures the application to launch
-        based on the chosen installation type.
-    </MudText>
-    <MudText>
-        The MSI installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
-        Program Files.
-    </MudText>
-    <MudButton Clicked=DownloadMSI Color="Color.Primary">Download MSI</MudButton>
+
+
+<MudText Class="mt-5" Typo=Typo.h4>Web Installer (Recommended)</MudText>
+<MudAlert Style="max-width:300px" Class="mud-alert-filled-warning">
+
+    The Web installer is not yet finished. Please check back around March 2023
+    if you want an easy installation.
+</MudAlert>
+<MudText Class="mt-3">
+    Installing via the Web installer is the recommended method as it performs all
+    required pre-installation checks automatically, and configures the application to launch
+    based on the chosen installation type.
+</MudText>
+<MudText Class="mt-3">
+    The Web installer allows installing the application to a new IIS Application Pool, or as a stand-alone service installed under
+    Program Files.
+</MudText>
+<MudButton OnClick=DownloadWeb Color="Color.Primary">Download Web Installer</MudButton>
 
 
 
 
 <MudText Class="mt-5" Typo=Typo.h4>Manual Installation</MudText>
-    <MudText>
-        If you need to install in a way that the MSI does not allow, or you're feeling particularly adventerous, use the manual
-        installation method. This method requires you to manually set up database connections and your web hosting solution.
-    </MudText>
-    @if (Error == "")
+<MudText>
+    If you need to install in a way that the Web Installer does not allow, or you're feeling particularly adventerous, use the manual
+    installation method. This method requires you to manually set up database connections and your web hosting solution.
+</MudText>
+@if (Error == "")
+{
+    if (latestDownload != null)
     {
-        if (latestDownload != null)
-        {
-            <Help>Version: @latestDownload.Version</Help>
-            <br />
+        <MudText Typo="Typo.subtitle1">Version: @latestDownload.Version</MudText>
+        <br />
 
-            <MudLink Href="@latestDownload.DownloadUri" Target="Target.Blank">
-                <MudButton Color="Color.Primary">Download Zip</MudButton>
+        <MudLink Href="@latestDownload.DownloadUri" Target="Target.Blank">
+            <MudButton Color="Color.Primary">Download Zip</MudButton>
 
-            </MudLink>
-            <br />
-            <br />
-            <br />
-            <MudLink Href="https://docs.blazam.org/install/manual/" Target=Target.Blank>
-                <MudButton Color=Color.Primary>Install Instructions</MudButton>
-            </MudLink>
-        }
-        else
-        {
-            <MudText>Getting latest version...</MudText>
-        }
+        </MudLink>
+        <br />
+        <br />
+        <br />
+        <MudLink Href="https://docs.blazam.org/install/manual/" Target=Target.Blank>
+            <MudButton Variant=Variant.Filled Color=Color.Primary>Install Instructions</MudButton>
+        </MudLink>
     }
     else
     {
-        <MudAlert Background="Background.Danger" Visible>
-                Error collecting latest version from GitHub.
-        </MudAlert>
+        <MudText>Getting latest version...</MudText>
     }
+}
+else
+{
+    <MudAlert>
+        Error collecting latest version from GitHub.
+    </MudAlert>
+}
 
 
 @code {
@@ -76,18 +87,18 @@
     ManualDownload latestDownload;
     string downloadUri = "";
     string Error = "";
-    async Task DownloadMSI()
+    async Task DownloadWeb()
     {
         if (await DialogService.ShowMessageBox(
              "Broken Installer",
-        "The MSI installer is incomplete. It will install the files for" +
+        "The Web installer is incomplete. It will install the files for" +
         " you but it is incapable of configuring IIS currently." +
         "  Are you sure you want to install this way?",
         yesText: "Download Anyway",
         noText: "I'll wait"
-        )==true)
+        ) == true)
         {
-            Nav.NavigateTo("/files/BLAZAM.msi", true);
+            Nav.NavigateTo("/files/BLAZAM.Web", true);
         }
     }
     protected override async Task OnInitializedAsync()
