@@ -31,6 +31,32 @@ namespace blazam.org
             
 
         }
+
+        public static async Task<ManualDownload?> GetLatestSetupUri()
+        {
+
+            var client = new GitHubClient(new ProductHeaderValue("BLAZAM-APP"));
+            var releases = await client.Repository.Release.GetAll("Blazam-App", "BlazamSetup");
+            var branchReleases = releases;
+            var latestRelese = branchReleases.FirstOrDefault()?.Assets.FirstOrDefault();
+            var filename = Path.GetFileNameWithoutExtension(latestRelese.Name);
+            //var latestVersion = filename.Substring(filename.IndexOf(".exe"));
+            if (latestRelese != null)
+            {
+
+
+
+                return new ManualDownload
+                {
+                    DownloadUri = latestRelese.BrowserDownloadUrl,
+                };
+
+
+            }
+            return null;
+
+
+        }
     }
     public class ManualDownload
     {
