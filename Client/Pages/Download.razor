@@ -5,20 +5,106 @@
 <MudText Typo=Typo.h1>Download</MudText>
 <Badges />
 
-<MudText Class="mt-5" Typo=Typo.h4>Requirements</MudText>
+<MudText Class="mt-5" Typo=Typo.h4>System Requirements</MudText>
 <MudContainer Class="ps-4">
-    <UnorderedListItem>Microsoft Windows Server/Desktop</UnorderedListItem>
-    <UnorderedListItem>Active Directory Services</UnorderedListItem>
-    <UnorderedListItem>Database from the options below...</UnorderedListItem>
+
+    <MudSimpleTable Style="overflow-x: auto;">
+        <thead>
+            <tr>
+
+
+                <th>System Requirements</th>
+                <th>Minimum</th>
+                <th>Recommended</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td style="font-weight:bold;">Operating System</td>
+                <td>Microsoft Windows 10</td>
+                <td>Microsoft Server 2019</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">Directory</td>
+                <td>Active Directory 2008R2 Schema</td>
+                <td>Active Directory 2012 Schema</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">Web Server</td>
+                <td>Self-served service</td>
+                <td>IIS</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">CPU</td>
+                <td>1.5Ghz Single Core</td>
+                <td>2Ghz Dual Core</td>
+            </tr>
+
+            <tr>
+                <td style="font-weight:bold;">RAM (Application Only)</td>
+                <td>150MB</td>
+                <td>500MB</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">Disk Space</td>
+                <td>500MB</td>
+                <td>1.5GB</td>
+            </tr>
+
+        </tbody>
+    </MudSimpleTable>
 </MudContainer>
+
 <MudText Class="mt-5" Typo=Typo.h4>Database Options</MudText>
 <MudContainer Class="ps-4">
-    <UnorderedListItem>Local File SQLite Database (No setup required)</UnorderedListItem>
-    <UnorderedListItem>MSSQL</UnorderedListItem>
-    <UnorderedListItem>SQLExpress</UnorderedListItem>
-    <UnorderedListItem>MySql</UnorderedListItem>
-    <UnorderedListItem>MariaDB</UnorderedListItem>
+
+    <MudSimpleTable Style="overflow-x: auto;">
+        <thead>
+            <tr>
+
+
+                <th>Database Type</th>
+                <th>Setup Required</th>
+                <th>Max recommended concurrent users</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>Local SQLite File</td>
+                <td>No</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>MSSQL Express</td>
+                <td>Yes</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>MariaDB</td>
+                <td>Yes</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>MSSQL</td>
+                <td>Yes</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+                <td>Yes</td>
+                <td>20000</td>
+            </tr>
+
+        </tbody>
+    </MudSimpleTable>
+
 </MudContainer>
+
+
 @if (Error == "")
 {
 
@@ -34,12 +120,14 @@
         The Web installer allows installing the application under IIS, or as a stand-alone service installed under
         Program Files.
     </MudText>
+
+
     if (latestSetup != null)
     {
-    <MudLink Href="@latestSetup.DownloadUri" Target=Target.Blank>
+        <MudLink Href="@latestSetup.DownloadUri" Target=Target.Blank>
             <MudButton Variant="Variant.Filled" Color="Color.Primary">Download Web Installer</MudButton>
 
-    </MudLink>
+        </MudLink>
     }
     else
     {
@@ -67,7 +155,7 @@
         <br />
         <br />
         <MudLink Href="https://docs.blazam.org/install/manual/" Target=Target.Blank>
-            <MudButton  Color=Color.Primary>Install Instructions</MudButton>
+            <MudButton Color=Color.Primary>Install Instructions</MudButton>
         </MudLink>
     }
     else
