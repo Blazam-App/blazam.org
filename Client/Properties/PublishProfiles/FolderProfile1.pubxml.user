@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Chris\source\repos\Blazam-App\blazam.org\Client\bin\Release\net6.0\browser-wasm\publish2\</_PublishTargetUrl>
+    <History>True|2023-11-10T16:31:01.3134996Z;True|2023-11-10T11:29:24.4409096-05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
