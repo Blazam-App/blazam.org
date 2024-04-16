@@ -1,107 +1,124 @@
-﻿
+﻿@using blazam.org.Shared.UI.Adsense
+
 <PageTitle>Blazam</PageTitle>
 <MudText Typo=Typo.h1>Blazam</MudText>
 <Badges />
+<MudStack Row=true>
+    <MudElement>
+        <MudText Typo=Typo.h4 ElementId="h0">@AppLocalization["Who is it for?"]</MudText>
+            <MudContainer Class="ps-4">
 
-<MudText Typo=Typo.h4 ElementId="h0">@AppLocalization["Who is it for?"]</MudText>
-<MudContainer Class="ps-4">
+                <UnorderedListItem>
+                    Do you manage an Active Directory environment?
 
-    <UnorderedListItem>
-        Do you manage an Active Directory environment?
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Do you want easier delegation of basic account functions?
 
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Do you want easier delegation of basic account functions?
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Do you want to easily unlock, or edit a user from your phone?
 
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Do you want to easily unlock, or edit a user from your phone?
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Setting up ACL's in active directory is complicated, and at the end of the day, you're still stuck with a desktop interface.
 
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Setting up ACL's in active directory is complicated, and at the end of the day, you're still stuck with a desktop interface.
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    This app will help you enable your users.
 
-    </UnorderedListItem>
-    <UnorderedListItem>
-        This app will help you enable your users.
+                </UnorderedListItem>
 
-    </UnorderedListItem>
+            </MudContainer>
 
-</MudContainer>
+            <MudText Typo=Typo.h4 ElementId="h1">@AppLocalization["What is Blazam?"]</MudText>
+            <MudContainer Class="ps-4">
+                <UnorderedListItem>
+                    Blazam is a flexible Active Directory management portal.
 
-<MudText Typo=Typo.h4 ElementId="h1">@AppLocalization["What is Blazam?"]</MudText>
-<MudContainer Class="ps-4">
-    <UnorderedListItem>
-        Blazam is a flexible Active Directory management portal.
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    The key feature is it's permissions system which allows you to empower your users to manage the groups, users, ou's, and computers you allow them to.
 
-    </UnorderedListItem>
-    <UnorderedListItem>
-        The key feature is it's permissions system which allows you to empower your users to manage the groups, users, ou's, and computers you allow them to.
+                </UnorderedListItem>
 
-    </UnorderedListItem>
+                <UnorderedListItem>
+                    Manage user group assignents, reset passwords, unlock, disable, and enable accounts.
+                </UnorderedListItem>
 
-    <UnorderedListItem>
-        Manage user group assignents, reset passwords, unlock, disable, and enable accounts.
-    </UnorderedListItem>
+                <UnorderedListItem>
+                    Configurable user creation templates to share with your users to ensure the proper infomation is provided.
+                </UnorderedListItem>
 
-    <UnorderedListItem>
-        Configurable user creation templates to share with your users to ensure the proper infomation is provided.
-    </UnorderedListItem>
+                <UnorderedListItem>
+                    Manage user thumbnail photo.
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Access Active Directory recycle bin from any web browser.
+                </UnorderedListItem>
 
-    <UnorderedListItem>
-        Manage user thumbnail photo.
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Access Active Directory recycle bin from any web browser.
-    </UnorderedListItem>
-
-</MudContainer>
-
-
-
+            </MudContainer>
 
 
-<MudText Typo=Typo.h4 ElementId="h2">@AppLocalization["How to get it?"]</MudText>
-<MudText>@AppLocalization["HowToGetItDescription"]</MudText>
-<MudText Typo=Typo.h4 ElementId="h1">@AppLocalization["Languages"]</MudText>
-<MudContainer Class="ps-4">
 
 
-    <UnorderedListItem>
-        Chinese(Simplified) - 中国人
-    </UnorderedListItem>
-    <UnorderedListItem>
-        English
-    </UnorderedListItem>
-    <UnorderedListItem>
-        French - Français
-    </UnorderedListItem>
-    <UnorderedListItem>
-        German - Deutsch
-    </UnorderedListItem>
 
-    <UnorderedListItem>
-        Hindi - हिंदी
-    </UnorderedListItem>
-
-    <UnorderedListItem>
-        Italian - Italiano
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Japanese - 日本語
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Korean - 한국인
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Polish - Polski
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Russian - Русский
-    </UnorderedListItem>
-    <UnorderedListItem>
-        Spanish - Español
-    </UnorderedListItem>
+            <MudText Typo=Typo.h4 ElementId="h2">@AppLocalization["How to get it?"]</MudText>
+            <MudText>@AppLocalization["HowToGetItDescription"]</MudText>
+            <DisplayAd />
+            <MudText Typo=Typo.h4 ElementId="h1">@AppLocalization["Languages"]</MudText>
+            <MudContainer Class="ps-4">
 
 
-</MudContainer>
+                <UnorderedListItem>
+                    Chinese(Simplified) - 中国人
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    English
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    French - Français
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    German - Deutsch
+                </UnorderedListItem>
+
+                <UnorderedListItem>
+                    Hindi - हिंदी
+                </UnorderedListItem>
+
+                <UnorderedListItem>
+                    Italian - Italiano
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Japanese - 日本語
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Korean - 한국인
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Polish - Polski
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Russian - Русский
+                </UnorderedListItem>
+                <UnorderedListItem>
+                    Spanish - Español
+                </UnorderedListItem>
+
+
+            </MudContainer>
+            <DisplayAd />
+    </MudElement>
+    <MudElement>
+        <MudStack>
+            <DisplayAd/>
+            <DisplayAd/>
+            <DisplayAd/>
+            <DisplayAd/>
+            <DisplayAd/>
+            <DisplayAd/>
+        </MudStack>
+    </MudElement>
+</MudStack>
+
